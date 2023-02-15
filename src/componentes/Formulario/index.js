@@ -5,31 +5,25 @@ import ListaSuspensa from "../ListaSuspensa";
 import Botao from "../Botao";
 
 const Formulario = (props) => {
-  const times = [
-    "Programação",
-    "Front-End",
-    "Data Science",
-    "Devops",
-    "UX e Design",
-    "Mobile",
-    "Inovação e Gestão",
-  ];
 
-  const [nome, setNome] = useState("");
-  const [cargo, setCargo] = useState("");
-  const [imagem, setImagem] = useState("");
-  const [time, setTime] = useState("");
+  const [colaborador, setColaborador] = useState({
+    nome: '',
+    cargo: '',
+    imagem: '',
+    time: '',
+  })
 
   const aoSalvar = (evento) => {
-    evento.preventDefault();
-    props.aoColaboradorCadastrado({
-      nome,
-      cargo,
-      imagem,
-      time
-    })
-
-  };
+      evento.preventDefault()
+      props.aoColaboradorCadastrado(colaborador)
+      setColaborador({
+          nome: '',
+          cargo: '',
+          imagem: '',
+          time: '',
+      })
+  }
+  
 
   return (
     <section className="formulario">
@@ -39,26 +33,29 @@ const Formulario = (props) => {
           label="Nome"
           obrigatorio={true}
           placeholder="Digite seu Nome"
-          valor={nome}
-          aoAlterado={(valor) => setNome(valor)}
+          valor={colaborador.nome}
+          aoAlterado={valor => setColaborador(colaboradorAtual => ({ ...colaboradorAtual, nome: valor }))}
         />
         <CampoTexto
           label="Cargo"
           obrigatorio={true}
           placeholder="Digite seu Cargo"
-          aoAlterado={(valor) => setCargo(valor)}
+          valor={colaborador.cargo}
+          aoAlterado={valor => setColaborador(colaboradorAtual => ({ ...colaboradorAtual, cargo: valor }))}
         />
         <CampoTexto
           label="Imagem"
           obrigatorio={true}
           placeholder="Digite o endereço da imagem"
-          aoAlterado={(valor) => setImagem(valor)}
+          valor={colaborador.imagem}
+          aoAlterado={valor => setColaborador(colaboradorAtual => ({ ...colaboradorAtual, imagem: valor }))}
         />
         <ListaSuspensa 
           obrigatorio={true} 
           label="Time" 
-          itens={times} 
-          aoAlterado= {(valor) => setTime(valor)}
+          itens={props.times}
+          valor={colaborador.time}
+          aoAlterado={valor => setColaborador(colaboradorAtual => ({ ...colaboradorAtual, time: valor }))}
 
         />
         <Botao>Criar Card</Botao>
