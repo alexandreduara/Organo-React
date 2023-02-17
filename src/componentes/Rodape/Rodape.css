@@ -1,0 +1,29 @@
+.rodape{ 
+    height: 213px;
+    background-color: #6278F7;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-image: url(/public/imagens/fundo.png);
+    background-size: cover;
+}
+
+.rodape ul{
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+    width: 180px;
+}
+
+.rodape > img{
+    width: 166px;
+}
+
+.rodape h6{
+    font-family: 'Montserrat';
+    font-weight: 500;
+    font-size: 20px;
+    color: #FFF;
+    letter-spacing: 2px;
+
+}
